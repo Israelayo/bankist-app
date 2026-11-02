@@ -312,14 +312,17 @@ btnLoan.addEventListener('click', function (e) {
     amount > 0 &&
     currentAccount.movements.some(move => move >= amount * 0.1)
   ) {
+    const requestingAccount = currentAccount;
+    inputLoanAmount.value = '';
     setTimeout(function () {
-      currentAccount.movements.push(amount);
-      currentAccount.movementsDates.push(new Date().toISOString());
-      updateUi(currentAccount);
-      inputLoanAmount.value = '';
-      clearInterval(timer);
+      requestingAccount.movements.push(amount);
+      requestingAccount.movementsDates.push(new Date().toISOString());
+      if (currentAccount === requestingAccount && +containerApp.style.opacity > 0) {
+        updateUi(requestingAccount);
+        clearInterval(timer);
 
-      timer = startTimeOut();
+        timer = startTimeOut();
+      }
     }, 2500);
   }
 });

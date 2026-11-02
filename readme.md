@@ -1,4 +1,4 @@
-# Bankist
+﻿# Bankist
 
 A responsive, interactive banking application built with **HTML, CSS, and vanilla JavaScript**.
 
